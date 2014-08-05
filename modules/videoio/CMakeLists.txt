@@ -102,6 +102,17 @@ if(HAVE_XIMEA)
   endif()
 endif(HAVE_XIMEA)
 
+if(HAVE_PYLON)
+  list(APPEND highgui_srcs src/cap_pylon.cpp)
+  ocv_include_directories(${PYLON_PATH}/include ${PYLON_PATH}/genicam/library/CPP/include)
+  if(PYLON_LIBRARY_DIR)
+    link_directories("${PYLON_LIBRARY_DIR}" ${PYLON_PATH}/genicam/bin/Linux64_x64 ${PYLON_PATH}/genicam/bin/Linux64_x64/GenApi/Generic)
+  endif()
+    list(APPEND HIGHGUI_LIBRARIES pylonbase GenApi${GENICAM_LIB_SUFFIX} GCBase${GENICAM_LIB_SUFFIX} 
+		Log${GENICAM_LIB_SUFFIX} MathParser${GENICAM_LIB_SUFFIX} 
+		Xerces-C${XERCES_LIB_SUFFIX} log4cpp${GENICAM_LIB_SUFFIX})
+endif(HAVE_PYLON)
+
 if(HAVE_FFMPEG)
   if(UNIX AND BZIP2_LIBRARIES)
     list(APPEND VIDEOIO_LIBRARIES ${BZIP2_LIBRARIES})

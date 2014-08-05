@@ -154,6 +154,7 @@ OCV_OPTION(WITH_LIBV4L         "Use libv4l for Video 4 Linux support"        ON 
 OCV_OPTION(WITH_DSHOW          "Build VideoIO with DirectShow support"       ON   IF (WIN32 AND NOT ARM) )
 OCV_OPTION(WITH_MSMF           "Build VideoIO with Media Foundation support" OFF  IF WIN32 )
 OCV_OPTION(WITH_XIMEA          "Include XIMEA cameras support"               OFF  IF (NOT ANDROID AND NOT APPLE) )
+OCV_OPTION(WITH_PYLON          "Include PYLON cameras support"               ON   IF (NOT ANDROID AND NOT APPLE) )
 OCV_OPTION(WITH_XINE           "Include Xine support (GPL)"                  OFF  IF (UNIX AND NOT APPLE AND NOT ANDROID) )
 OCV_OPTION(WITH_CLP            "Include Clp support (EPL)"                   OFF)
 OCV_OPTION(WITH_OPENCL         "Include OpenCL Runtime support"              ON   IF (NOT IOS) )
@@ -919,6 +920,10 @@ endif(DEFINED WITH_MSMF)
 if(DEFINED WITH_XIMEA)
   status("    XIMEA:"          HAVE_XIMEA          THEN YES                                        ELSE NO)
 endif(DEFINED WITH_XIMEA)
+
+if(DEFINED WITH_PYLON)
+  status("    PYLON:"          HAVE_PYLON            THEN YES                                        ELSE NO)
+endif(DEFINED WITH_PYLON)
 
 if(DEFINED WITH_XINE)
   status("    Xine:"           HAVE_XINE           THEN "YES (ver ${ALIASOF_libxine_VERSION})"     ELSE NO)
