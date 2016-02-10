@@ -260,6 +260,13 @@ CV_IMPL CvCapture * cvCreateCameraCapture (int index)
             capture = cvCreateCameraCapture_Giganetix(index);
         if (pref) break; // CV_CAP_GIGANETIX
 #endif
+
+#ifdef HAVE_PYLON
+    case CV_CAP_PYLON:
+        if (!capture)
+            capture = cvCreateCameraCapture_PYLON(index);
+        if (pref) break;
+#endif
     }
 
     return capture;

@@ -215,6 +215,7 @@ OCV_OPTION(WITH_VA             "Include VA support"                          OFF
 OCV_OPTION(WITH_VA_INTEL       "Include Intel VA-API/OpenCL support"         OFF  IF (UNIX AND NOT ANDROID) )
 OCV_OPTION(WITH_GDAL           "Include GDAL Support"                        OFF  IF (NOT ANDROID AND NOT IOS AND NOT WINRT) )
 OCV_OPTION(WITH_GPHOTO2        "Include gPhoto2 library support"             ON   IF (UNIX AND NOT ANDROID) )
+OCV_OPTION(WITH_PYLON          "Include PYLON cameras support"               ON   IF (NOT ANDROID OR NOT IOS OR NOT APPLE) )
 
 # OpenCV build components
 # ===================================================
@@ -1070,6 +1071,10 @@ endif(DEFINED WITH_INTELPERC)
 if(DEFINED WITH_GPHOTO2)
   status("    gPhoto2:"        HAVE_GPHOTO2        THEN "YES"                                 ELSE NO)
 endif(DEFINED WITH_GPHOTO2)
+
+if(DEFINED WITH_PYLON)
+  status("    PYLON:"          HAVE_PYLON          THEN YES                                        ELSE NO)
+endif(DEFINED WITH_PYLON)
 
 
 # Order is similar to CV_PARALLEL_FRAMEWORK in core/src/parallel.cpp

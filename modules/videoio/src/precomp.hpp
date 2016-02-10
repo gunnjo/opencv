@@ -155,6 +155,7 @@ CvCapture* cvCreateFileCapture_AVFoundation (const char * filename);
 CvVideoWriter* cvCreateVideoWriter_AVFoundation( const char* filename, int fourcc,
                                                 double fps, CvSize frameSize, int is_color );
 
+CvCapture* cvCreateCameraCapture_PYLON( int index );
 
 CvCapture * cvCreateCameraCapture_Unicap  (const int     index);
 CvCapture * cvCreateCameraCapture_PvAPI  (const int     index);
