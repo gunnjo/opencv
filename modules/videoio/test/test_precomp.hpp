@@ -38,6 +38,7 @@
     defined(HAVE_GIGE_API)     || \
     defined(HAVE_INTELPERC)    || \
     defined(HAVE_GPHOTO2)      || \
+    defined(HAVE_PYLON)        || \
     (0)
 #  define BUILD_WITH_CAMERA_SUPPORT 1
 #else

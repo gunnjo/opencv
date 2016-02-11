@@ -179,6 +179,9 @@
 /* XIMEA camera support */
 #cmakedefine HAVE_XIMEA
 
+/* Pylon camera support */
+#cmakedefine HAVE_PYLON
+
 /* Xine video library */
 #cmakedefine HAVE_XINE
 

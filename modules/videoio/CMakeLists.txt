@@ -151,11 +151,13 @@ endif(HAVE_FFMPEG)
 
 if(HAVE_PYLON)
   list(APPEND videoio_srcs ${CMAKE_CURRENT_LIST_DIR}/src/cap_pylon.cpp)
-  ocv_include_directories(${PYLON_PATH}/include ${PYLON_PATH}/genicam/library/CPP/include)
+  if (PYLON_PATH)
+    ocv_include_directories(${PYLON_PATH}/include ${PYLON_PATH}/genicam/library/CPP/include)
+  endif()
   if(PYLON_LIBRARY_DIR)
     link_directories("${PYLON_LIBRARY_DIR}" ${PYLON_PATH}/genicam/bin/Linux64_x64 ${PYLON_PATH}/genicam/bin/Linux64_x64/GenApi/Generic)
   endif()
-    list(APPEND HIGHGUI_LIBRARIES pylonbase GenApi${GENICAM_LIB_SUFFIX} GCBase${GENICAM_LIB_SUFFIX} 
+  list(APPEND VIDEOIO_LIBRARIES pylonbase GenApi${GENICAM_LIB_SUFFIX} GCBase${GENICAM_LIB_SUFFIX} 
     Log${GENICAM_LIB_SUFFIX} MathParser${GENICAM_LIB_SUFFIX} 
     Xerces-C${XERCES_LIB_SUFFIX} log4cpp${GENICAM_LIB_SUFFIX})
 endif(HAVE_PYLON)
