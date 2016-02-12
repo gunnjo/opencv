@@ -127,16 +127,19 @@ IplImage* CvCaptureCAM_PYLON::retrieveFrame(int)
 
     }
     if( ptrGrabResult->GrabSucceeded()){
-        fprintf( stderr, "Pylon: grab worked\n");
-        if (rawImage == 0) {
+        int depth = ptrGrabResult->GetPixelType()== Pylon::PixelType_BayerBG8 ? 1:1;
+// TODO Pylon::PixelType_Mono8
+        if (!rawImage) {
             rawImage = cvCreateImageHeader (cvSize(ptrGrabResult->GetWidth(), ptrGrabResult->GetHeight()),IPL_DEPTH_8U,1);
         }
         rawImage->origin = IPL_ORIGIN_TL;
         rawImage->dataOrder =  IPL_DATA_ORDER_PIXEL;
         rawImage->widthStep = ptrGrabResult->GetWidth();
-        rawImage->imageData = (char*)(rawImage->imageData);
+        rawImage->imageData = (char*)(ptrGrabResult->GetBuffer());
+        fprintf( stderr, "Pylon: grab worked %d\n", CV_IS_IMAGE(rawImage));
     } else {
-        fprintf( stderr, "Pylon: grab failed\n");\
+        fprintf( stderr, "Pylon: grab failed %x\n", ptrGrabResult->GetErrorCode());
+        return 0;
     }
 
     return rawImage;
