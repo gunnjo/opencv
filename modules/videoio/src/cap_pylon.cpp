@@ -136,7 +136,6 @@ IplImage* CvCaptureCAM_PYLON::retrieveFrame(int)
         rawImage->dataOrder =  IPL_DATA_ORDER_PIXEL;
         rawImage->widthStep = ptrGrabResult->GetWidth();
         rawImage->imageData = (char*)(ptrGrabResult->GetBuffer());
-        fprintf( stderr, "Pylon: grab worked %d\n", CV_IS_IMAGE(rawImage));
     } else {
         fprintf( stderr, "Pylon: grab failed %x\n", ptrGrabResult->GetErrorCode());
         return 0;
